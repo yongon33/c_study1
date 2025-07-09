@@ -1,38 +1,36 @@
-#include <stdio.h>
 #include <assert.h>
+#include <stdio.h>
 
 char *find_char(char *source, char *chars);
 
-int main()
-{
-    char *source = "ABCDEF";
-    char *chars  = "ESmSG";
-    char *result;
-    result = find_char(source, chars);
-    printf("%c\r\n", *result);
+int main() {
+  char *source = "ABCDEF";
+  char *chars = "ESmSG";
+  char *result;
+  result = find_char(source, chars);
+  printf("%c\r\n", *result);
 
-    return 0;
+  return 0;
 }
 
-char *find_char(char *source, char *chars)
-{
-    assert(source != NULL);
-    assert(chars != NULL);
+char *find_char(char *source, char *chars) {
+  assert(source != NULL);
+  assert(chars != NULL);
 
-    while (*source != '\0') {
-        
-        char *char_tmp = chars;
+  while (*source != '\0') {
 
-        while (*char_tmp != '\0') {
-            if (*source == *char_tmp) {
-                return source;
-            }
+    char *char_tmp = chars;
 
-            char_tmp++;
-        }
+    while (*char_tmp != '\0') {
+      if (*source == *char_tmp) {
+        return source;
+      }
 
-        source++;
+      char_tmp++;
     }
 
-    return "\r\0";
+    source++;
+  }
+
+  return "\r\0";
 }

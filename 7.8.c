@@ -13,61 +13,59 @@
 
 static void pr_limits(char *name, int);
 
-int main(void)
-{
+int main(void) {
 #ifdef RLIMIT_AS
-    doit(RLIMIT_AS);
+  doit(RLIMIT_AS);
 #endif
-    doit(RLIMIT_CORE);
-    doit(RLIMIT_CPU);
-    doit(RLIMIT_DATA);
-    doit(RLIMIT_FSIZE);
+  doit(RLIMIT_CORE);
+  doit(RLIMIT_CPU);
+  doit(RLIMIT_DATA);
+  doit(RLIMIT_FSIZE);
 #ifdef RLIMIT_LOCKS
-    doit(RLIMIT_LOCKS);
+  doit(RLIMIT_LOCKS);
 #endif
 #ifdef RLIMIT_MEMLOCK
-    doit(RLIMIT_MEMLOCK);
+  doit(RLIMIT_MEMLOCK);
 #endif
-    doit(RLIMIT_NOFILE);
+  doit(RLIMIT_NOFILE);
 #ifdef RLIMIT_NPROC
-    doit(RLIMIT_NPROC);
+  doit(RLIMIT_NPROC);
 #endif
 #ifdef RLIMIT_RSS
-    doit(RLIMIT_RSS);
+  doit(RLIMIT_RSS);
 #endif
 #ifdef RLIMIT_SBSIZE
-    doit(RLIMIT_SBSIZE);
+  doit(RLIMIT_SBSIZE);
 #endif
-    doit(RLIMIT_STACK);
+  doit(RLIMIT_STACK);
 #ifdef RLIMIT_VMEM
-    doit(RLIMIT_VMEM);
+  doit(RLIMIT_VMEM);
 #endif
 
-    exit(0);
+  exit(0);
 }
 
-static void pr_limits(char *name, int resource)
-{
-    struct rlimit limit;
+static void pr_limits(char *name, int resource) {
+  struct rlimit limit;
 
-    if (getrlimit(resource, &limit) < 0) {
-        printf("getrlimit error for %s", name);
-        exit(-1);
-    }
+  if (getrlimit(resource, &limit) < 0) {
+    printf("getrlimit error for %s", name);
+    exit(-1);
+  }
 
-    printf("%-14s  ", name);
+  printf("%-14s  ", name);
 
-    if (limit.rlim_cur == RLIM_INFINITY) {
-        printf("(infinite)  ");
-    } else {
-        printf(FMT, limit.rlim_cur);
-    }
+  if (limit.rlim_cur == RLIM_INFINITY) {
+    printf("(infinite)  ");
+  } else {
+    printf(FMT, limit.rlim_cur);
+  }
 
-    if (limit.rlim_max == RLIM_INFINITY) {
-        printf("(infinite)");
-    } else {
-        printf(FMT, limit.rlim_max);
-    }
+  if (limit.rlim_max == RLIM_INFINITY) {
+    printf("(infinite)");
+  } else {
+    printf(FMT, limit.rlim_max);
+  }
 
-    putchar((int)'\n');
+  putchar((int)'\n');
 }

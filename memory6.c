@@ -1,17 +1,16 @@
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 #define ONE_K (1024)
 
-int main()
-{
-    char *some_memory;
-    int exit_code = EXIT_FAILURE;
+int main() {
+  char *some_memory;
+  int exit_code = EXIT_FAILURE;
 
-    some_memory = (char *) malloc(ONE_K);
-    if (some_memory != NULL) {
-        free(some_memory);
-        printf("Memory allocated and free again\n");
-    }
-    exit(exit_code);
+  some_memory = (char *)malloc(ONE_K);
+  if (some_memory != NULL) {
+    free(some_memory);
+    printf("Memory allocated and free again\n");
+  }
+  exit(exit_code);
 }
